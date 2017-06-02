@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            编辑管理员
+        </h2>
+    </div>
+    <form action="/Admin/Update/@ViewBag.user.id" method="post" enctype="multipart/form-data">
+        <div class="form-group" style="max-width: 300px">
+            <label for="username">用户名</label>
+            <input class="form-control" id="username" type="text" required name="username" value="@ViewBag.user.username">
+        </div>
+        <div class="form-group" style="max-width: 300px">
+            <label for="password">密码</label>
+            <input class="form-control" id="password" type="password" required name="password" value="@ViewBag.user.password">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                提交
+            </button>
+        </div>
+    </form>
+</div>
+

@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生创新培训评价系统</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="nav navbar-default navbar-fixed-top" role="navigation" style="padding:0 20px 0 0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="app_navbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/" style="margin-left: 15px;margin-right: 69px;font-size: large">学生创新培训评价系统</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown"
+                           id="name">
+                            @Session["Admin"] <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/Auth/Logout">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="site-nav-left-wrap" id="site_nav_left_wrap">
+
+        <div style="height: 50px;"></div>
+        <div class="site-nav-left scrollable-container">
+            <div class="list-group">
+                <a href="/" class="list-group-item"
+                   data-pjax
+                   data-toggle="tooltip"
+                   data-placement="right"
+                   title="概览">
+                    <i class="fa fa-dashboard"></i>
+                    <span class="text">概览</span>
+                    <span class="glyphicon glyphicon-triangle-left"></span>
+                </a>
+            </div>
+
+            <div class="list-group">
+                <a href="javascript:void(0);"
+                   class="list-group-item list-group-item-header"
+                   data-toggle="collapse"
+                   data-target="#report_sidebar_nav_collapse">
+                    <span class="text">培训会议管理</span>
+                    <i class="fa fa-caret-down" id="caret"></i>
+                </a>
+
+                <div class="list-group site-nav-left-container collapse collapsed in"
+                     id="report_sidebar_nav_collapse">
+
+                    <a href="/Meet/Index" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">培训会议列表</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+                    <a href="/Meet/Create/" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">新建培训会议</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="list-group">
+                <a href="javascript:void(0);"
+                   class="list-group-item list-group-item-header"
+                   data-toggle="collapse"
+                   data-target="#qa_sidebar_nav_collapse">
+                    <span class="text">问卷管理</span>
+                    <i class="fa fa-caret-down" id="caret"></i>
+                </a>
+
+                <div class="list-group site-nav-left-container collapse collapsed in"
+                     id="qa_sidebar_nav_collapse">
+
+                    <a href="/Questionnaire/Index" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">问卷列表</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+                    <a href="/Questionnaire/Create" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">新增问卷</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="list-group">
+                <a href="javascript:void(0);"
+                   class="list-group-item list-group-item-header"
+                   data-toggle="collapse"
+                   data-target="#user_sidebar_nav_collapse">
+                    <span class="text">成员管理</span>
+                    <i class="fa fa-caret-down" id="caret"></i>
+                </a>
+
+                <div class="list-group site-nav-left-container collapse collapsed in"
+                     id="user_sidebar_nav_collapse">
+
+                    <a href="/User/Index" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">成员列表</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+                    <a href="/User/Create" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">新增成员</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <div class="list-group">
+                <a href="javascript:void(0);"
+                   class="list-group-item list-group-item-header"
+                   data-toggle="collapse"
+                   data-target="#permission_sidebar_nav_collapse">
+                    <span class="text">权限管理</span>
+                    <i class="fa fa-caret-down" id="caret"></i>
+                </a>
+
+                <div class="list-group site-nav-left-container collapse collapsed in"
+                     id="permission_sidebar_nav_collapse">
+
+                    <a href="/Admin/Index" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">管理员列表</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+                    <a href="/Admin/Create" class="list-group-item"
+                       data-pjax
+                       data-toggle="tooltip"
+                       data-placement="right">
+                        <span class="text">新增管理员</span>
+                        <span class="glyphicon glyphicon-triangle-left"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="btn-toggle-site-nav-left text-center" id="btn_toggle_site_nav_left_wrap_style">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                <span class="glyphicon glyphicon-arrow-right"></span>
+            </div>
+
+            <div class="fix-push-up" style="height: 120px;"></div>
+        </div>
+    </div>
+   <div style="height:50px"></div>
+    
+    <div class="container body-content">
+        <div class="section">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year - DesignBy hejunwei PowerBy ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            // init app
+            app.init();
+        });
+    </script>
+</body>
+</html>

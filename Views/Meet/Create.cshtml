@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            新建会议
+        </h2>
+    </div>
+    <form action="/Meet/Store" method="post" enctype="multipart/form-data">
+        <div class="form-group" style="max-width: 300px">
+            <label for="title">会议主题</label>
+            <input class="form-control" id="title" type="text" required name="title">
+        </div>
+        <div class="form-group" style="max-width: 300px">
+            <label for="description">会议内容</label><span class="text-muted"> (摘要)</span>
+            <input class="form-control" id="description" type="text" required name="description">
+        </div>
+        <div class="form-group" style="max-width: 300px">
+            <label for="begin_at">会议开始时间</label><span class="text-muted"> (格式参照:2017-01-01 12:12:00)</span>
+            <div class="input-group date datetimepicker">
+                <input type='text' class="form-control" name="begin_at">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="users">与会人员</label><span class="text-muted"> (勾选需要参加此次会议的人选)</span>
+            <div class="row">
+                @foreach (var user in ViewBag.users)
+                {
+                    <div class="col-xs-6">
+                        <label>
+                            <input id="users" type="checkbox" required name="users" value="@user.id"> @user.username
+                        </label>
+                    </div>
+                }
+            </div>
+            </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                新增
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,215 @@
+﻿* {
+    outline: 0 !important;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.error {
+    color: #a94443;
+}
+
+#app-navbar-collapse {
+    background: #FFFFFF;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.main {
+    margin-left: 200px;
+}
+
+.btn-toggle-site-nav-left {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    height: 60px;
+    line-height: 60px;
+    background: #233544;
+    color: #121b23;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all .1s;
+    z-index: 2;
+}
+
+.site-nav-left-wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background: #2c4255;
+    overflow: visible;
+    transition: all .1s;
+}
+
+    .site-nav-left-wrap::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .site-nav-left-wrap .site-nav-left {
+        background: #2c4255;
+        height: 100%;
+        overflow: auto;
+    }
+
+        .site-nav-left-wrap .site-nav-left::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .site-nav-left-wrap .site-nav-left .list-group {
+            margin: 0;
+        }
+
+            .site-nav-left-wrap .site-nav-left .list-group + .list-group {
+                margin-top: -1px;
+            }
+
+            .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header,
+            .site-nav-left-wrap .site-nav-left .list-group .list-group-item {
+                height: 50px;
+                line-height: 30px;
+                border-radius: 0;
+                background: #2c4255;
+                border: none;
+                color: #aaa;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header .fake-icon,
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item .fake-icon {
+                    display: none;
+                }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item:not(.list-group-item-header) {
+                    border-left: 2px solid #1b2833;
+                }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item.active, .site-nav-left-wrap .site-nav-left .list-group .list-group-item:hover {
+                    background: #1b2833;
+                    color: #fff;
+                    border-color: #9f4d81;
+                }
+
+                    .site-nav-left-wrap .site-nav-left .list-group .list-group-item.active .glyphicon, .site-nav-left-wrap .site-nav-left .list-group .list-group-item:hover .glyphicon {
+                        display: inline;
+                        position: absolute;
+                        right: -5px;
+                        top: 0;
+                        line-height: 50px;
+                        font-size: 1.2em;
+                    }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item .glyphicon {
+                     display: none;
+                }
+
+            .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header {
+                background: #273a4b;
+                border-top: 2px solid #327569;
+                font-weight: bold;
+                margin-top: 1px;
+            }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header .glyphicon-triangle-bottom {
+                    line-height: 30px;
+                    transition: all .1s;
+                }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header.collapsed .glyphicon-triangle-bottom {
+                    -webkit-transform: rotate(180deg);
+                    -ms-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header:hover {
+                    background: #253848;
+                    color: #fff;
+                }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header.active {
+                    background: #253848;
+                    color: #fff;
+                }
+
+                .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header .icon-text {
+                    display: none;
+                }
+
+    .site-nav-left-wrap .btn-toggle-site-nav-left .glyphicon-arrow-right {
+        display: none;
+    }
+
+body.has-icon-menu .site-nav-left-wrap {
+    width: 100px;
+    z-index: 2;
+}
+
+    body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item {
+        text-align: center;
+        font-size: 14px;
+    }
+
+        body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item.active .glyphicon, body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item:hover .glyphicon {
+            right: -6px;
+            font-size: 1em;
+        }
+
+        body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item .text {
+            display: none;
+        }
+
+        body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item .fake-icon {
+            display: inline;
+            margin-right: 0;
+        }
+
+    body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header {
+        font-size: .9em;
+    }
+
+        body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header .icon-text {
+            display: inline;
+        }
+
+        body.has-icon-menu .site-nav-left-wrap .site-nav-left .list-group .list-group-item-header .glyphicon-triangle-bottom {
+            font-size: 1.4em;
+        }
+
+    body.has-icon-menu .site-nav-left-wrap .btn-toggle-site-nav-left {
+        width: 100px;
+    }
+
+        body.has-icon-menu .site-nav-left-wrap .btn-toggle-site-nav-left .glyphicon-arrow-left {
+            display: none;
+        }
+
+        body.has-icon-menu .site-nav-left-wrap .btn-toggle-site-nav-left .glyphicon-arrow-right {
+            display: inline;
+        }
+
+body.has-icon-menu [role="tooltip"] {
+    line-height: 24px;
+    width: 120px;
+    z-index: 999;
+}
+
+.report-site-nav-left-wrap {
+    width: 200px;
+}
+
+    .report-site-nav-left-wrap .btn-toggle-site-nav-left {
+        width: 200px;
+    }
+
+.body-content {
+    margin-left: 200px;
+}
+
+    .body-content .section {
+        min-height: 500px;
+    }

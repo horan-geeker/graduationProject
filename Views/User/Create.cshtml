@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h2>
+            新增成员
+        </h2>
+    </div>
+    <form action="/User/Store" method="post" enctype="multipart/form-data">
+        <div class="form-group" style="max-width: 300px">
+            <label for="username">用户名</label>
+            <input class="form-control" id="username" type="text" 
+                           required
+                           data-rule-minlength="3"
+                           data-rule-maxlength="20"
+                           data-msg-required="请填写用户名"
+                   name="username">
+        </div>
+        <div class="form-group" style="max-width: 300px">
+            <label for="password">密码</label>
+            <input class="form-control" id="password" type="password" required
+                           data-rule-minlength="6"
+                           data-rule-maxlength="40"
+                           data-msg-required="请填写密码"
+                   name="password">
+        </div>
+        <div class="form-group" style="max-width: 300px">
+            <label for="gender">性别</label>
+            <select class="form-control" name="gender">
+                <option value="1">男</option>
+                <option value="0">女</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                新增
+            </button>
+        </div>
+    </form>
+</div>

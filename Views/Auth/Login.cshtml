@@ -1,0 +1,109 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>学生创新培训评价系统</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <nav class="nav navbar-default navbar-fixed-top" role="navigation" style="padding:0 20px 0 0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="app_navbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/" style="margin-left: 15px;margin-right: 69px;font-size: large">学生创新培训评价系统</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="height: 50px;"></div>
+    @if (Session["flash_error_message"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+            @Session["flash_error_message"]
+        </div>
+        {
+            Session["flash_error_message"] = null;
+        }
+    }
+
+    <div class="container">
+        <div class="col-xs-12 col-md-4 col-md-offset-4">
+            <h3 class="form-header page-header text-center">
+                <span class="glyphicon glyphicon-user"></span> 用户登录
+            </h3>
+            <form action="/Auth/LoginPost" method="post" class="form" id="login_form" novalidate>
+                <div class="form-group">
+                    <label for="username"><i class="fa fa-user" aria-hidden="true"></i> 用户名</label>
+                    <input type="text" name="username"
+                           required
+                           data-rule-minlength="3"
+                           data-rule-maxlength="20"
+                           data-msg-required="请填写用户名"
+                           class="form-control" id="login-username"
+                           placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="password"><i class="fa fa-lock" aria-hidden="true"></i> 密码</label>
+                    <input type="password" name="password" required
+                           data-rule-minlength="6"
+                           data-rule-maxlength="40"
+                           data-msg-required="请填写密码"
+                           class="form-control" id="login_password" placeholder="Enter password">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block">登 录</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(function () {
+            var options = {
+                ignore: ".ignore",
+                highlight: function (el) {
+                    $(el).closest('.form-group').addClass('has-error');
+                    $(el).closest('.form-group').find('.help-block').addClass('hidden');
+                    // remove the error message from the server
+                    // $(el).parent().find('i').html('&nbsp;').removeClass('fa fa-check');
+                },
+                unhighlight: function (el) {
+                    $(el).closest('.form-group').removeClass('has-error');
+                    // remove the error message from the server
+                    $(el).closest('.form-group').find('.help-block').addClass('hidden');
+                    // $(el).parent().find('i').html('&nbsp;').addClass('fa fa-check');
+                },
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+            };
+
+            $('#login_form').validate(options);
+        });
+    </script>
+</body>
+
+</html>

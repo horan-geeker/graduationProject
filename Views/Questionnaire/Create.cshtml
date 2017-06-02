@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="../../Content/edit-quenaire.css">
+<div class="page-header">
+    <h2>
+        新增问卷
+    </h2>
+</div>
+<div id="page-inner">
+    <form action="/Questionnaire/Store" method="post" id="question-form" class="should-manually-validate" novalidate>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    @*<div class="col-md-2">
+                            <div class="input-group">
+                                <label class="input-group-addon">No.</label>
+                                <input class="form-control" type="text" name="questionnaire_id" id="questionnaire_id"
+                                       maxlength="4" value="0001" readonly />
+                            </div>
+                        </div>*@
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="event">目标活动:</label>
+                            <select class="form-control" id="meet_id" name="meet_id" requeired>
+                                <option value="-1" selected="selected">无</option>
+                                @foreach (var meet in ViewBag.meets)
+                                {
+                                    <option value="@meet.id">@meet.title </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <label class="input-group-addon" for="event">问卷类型:</label>
+                            <select class="form-control" id="quenaire_type" name="quenaire_type" requeired>
+                                <option value="1">实名问卷</option>
+                                <option value="2">匿名问卷</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1">
+                            <label class="input-group-addon">截止日期</label>
+                            <div class="input-group date datetimepicker">
+                                <input type='text' id="end_datetime" class="form-control" name="begin_at">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="end_err_msg" class="text-danger col-md-12" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <input class="form-control" type="text" name="title" id="title" placeholder="请输入问卷标题" />
+                <div id="title_err_msg" class="text-danger col-md-12" style="display:none;"></div>
+                <br>
+                <textarea class="form-control" id="direction" name="direction" rows="4" placeholder="请输入问题说明"></textarea>
+                <div id="direction_err_msg" class="text-danger col-md-12" style="display:none;"></div>
+                @*<div id="direction" name="direction"></div>*@
+
+
+            </div>
+        </div>
+        <div class="div-questionnaire">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="question-div">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="form-group">
+        <a class="btn btn-primary" href="javascript:finish(true,false,false);">发布</a>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../Scripts/edit-quenaire.js"></script>
+<script>
+    window.onload = function () {
+        var d = new Date();
+        var time = d.toLocaleDateString();
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var monthStr = pad(month, 2);
+        var day = d.getDate();
+        var dayStr = pad(day, 2);
+
+        var nextToday = year + "-" + monthStr + "-" + dayStr;
+        $("#end_datetime").attr("value", nextToday);
+
+        var questionDiv = $("#question-div");
+        utility.addNewQuestion(questionDiv);
+    }
+
+    function pad(num, n) {
+        var len = num.toString().length;
+        while (len < n) {
+            num = "0" + num;
+            len++;
+        }
+        return num;
+    }
+
+
+</script>

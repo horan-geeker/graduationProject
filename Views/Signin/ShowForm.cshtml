@@ -1,0 +1,108 @@
+﻿@{ Layout = null; }
+
+<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>培训会议签到</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="../../Content/main.css" />
+
+</head>
+<body class="landing">
+    @if (Session["flash_error_message"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+            @Session["flash_error_message"]
+        </div>
+        {
+            Session["flash_error_message"] = null;
+        }
+    }
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+        <!-- Banner -->
+        <section id="banner">
+            <div class="inner">
+                <h2>Welcome<br />亲爱的培训学员</h2>
+                <p>欢迎来到<p1>"@ViewBag.meet.title"</p1>会议<br /></p>
+                <form action="/Signin/Signin/@ViewBag.meet.id" method="post">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="username">账&emsp;号</label>
+                                    <input id="username" class="form-control" name="username" placeholder="请输入账号" type="text" maxlength="9" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="password">密&emsp;码</label>
+                                    <input id="password" class="form-control" placeholder="请输入密码" name="password" maxlength="20" type="password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="form-control btn special btn-block">签&emsp;到</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+
+
+        <!--
+        <script src="../../Scripts/jquery.min.js"></script>
+        <script type="text/javascript">
+                        function finish() {
+                            if ($("#gongzihao").val().length < 9) {
+                                alert("请输入9位工资号!");
+                                return;
+                            }
+                            $.ajax({
+                                type: "POST",
+                                url: "/qiandao/handle",
+                                cache: false,
+                                data: {
+                                    venue_id: $("#venue_id").val(),
+                                    vname: $("#vname").val(),
+                                    starttime: $("#starttime").val(),
+                                    endtime: $("#endtime").val(),
+                                    username: $("#gongzihao").val(),
+                                    uname: $("#xingming").val()
+                                },
+                                dataType: "json",
+                                success: function (data) {
+                                    var jsonData = eval(data);
+                                    if ( jsonData.isChecked == true) {
+                                        if (jsonData.isInTime == true) {
+                                            if (jsonData.isSigned == true) {
+                                                alert("你已经签到过了，请勿重复签到");
+                                            } else {
+                                                window.location.href = "/qiandao/sign/";
+                                            }
+                                        } else {
+                                            alert("当前不在签到时间内");
+                                        }
+                                    } else {
+                                        alert("工资号或姓名错误");
+                                    }
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    alert(errorThrown);
+                                }
+                            });
+                        }
+        </script>
+            -->
+
+
+    </div>
+
+</body>
+</html>

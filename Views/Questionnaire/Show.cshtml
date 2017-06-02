@@ -1,0 +1,122 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>学生创新培训评价系统</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="../../Content/preview-quenaire.css" media="screen">
+</head>
+<body>
+    <div class="container">
+        <form method="post" action="/Answer/Store" id="answer_form" novalidate>
+            <div id="page-inner">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-3 text-info text-left">
+                            @if (ViewBag.que.type == "1")
+                            {
+                            <span style="font-family:'Microsoft JhengHei';">实名问卷:</span>
+                                if(Session["User"] == null){
+                                    @:<a href="/Signin/ShowForm/@ViewBag.que.meet_id">请先签到</a>
+                                }else{
+                                    @Session["User"]
+                                }
+                            }
+                            else
+                            {
+                            <span style="font-family:'Microsoft JhengHei'">匿名问卷</span>
+                            }
+                        </div>
+                        <input type="hidden" name="questionnaire_type" value="@ViewBag.que.type" />
+                        <input type="hidden" name="questionnaire_id" id="quenaire_id" value="@ViewBag.que.id" />
+                        <div class="col-md-3 col-md-offset-6 text-danger text-right"><span style="font-family:'Microsoft JhengHei'">截止时间：@ViewBag.que.end_at</span></div>
+                        <div class="clearfix"></div>
+                        <h1 class="text-primary title">@ViewBag.que.title</h1>
+                        <pre class="direction">@ViewBag.que.direction</pre>
+                        <div class="horizontal"></div>
+                        @for (int i=0; i < ViewBag.que.questions.Count; i++)
+                        {
+                        <div class="question">
+                            <div>
+                                @(i+1)<span>、</span>@ViewBag.que.questions[i].question_content
+                                @*@if(ViewBag.que.questions[i].is_required==1){
+                                    <span class="text-danger">[必答]</span>
+                                }else{
+                                    <span class="text-info">[选答]</span>
+                                }*@
+                            </div>
+                            <div class="row">
+                                @if (ViewBag.que.questions[i].type_id == 1)
+                                {
+                                    foreach (var questionChoice in ViewBag.que.questions[i].questionChoices)
+                                    {
+
+                                    <div class="col-md-6">
+                                        <div class="choice" data-que="@ViewBag.que.questions[i].id">
+                                            <input required type="radio" name="@ViewBag.que.questions[i].id" value="@questionChoice.choice_tag">@questionChoice.choice_tag<span>.</span>@questionChoice.choice_content
+                                        </div>
+                                    </div>
+
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-md-12">
+                                        <textarea required class="form-control" rows="2" name="@ViewBag.que.questions[i].id" style="resize:none;" placeholder="请填写内容"></textarea>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form-control btn btn-success">提交</button>
+            </div>
+        </form>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(function () {
+            var options = {
+                ignore: ".ignore",
+                highlight: function (el) {
+                    $(el).closest('.form-group').addClass('has-error');
+                    // remove the error message from the server
+                    $(el).closest('.form-group').find('.help-block').addClass('hidden');
+                },
+                unhighlight: function (el) {
+                    $(el).closest('.form-group').removeClass('has-error');
+                    // remove the error message from the server
+                    $(el).closest('.form-group').find('.help-block').addClass('hidden');
+                },
+                errorPlacement: function (error, element) {
+                    if (element.parent('.input-group').length) {
+                        error.insertAfter(element.parent());
+                    } else {
+                        error.appendTo(element.closest('.form-group'));
+                    }
+                }
+            }
+
+            $('#answer_form').validate(options);
+        });
+
+        function answerSubmit() {
+            
+            alert("hi");
+            return false;
+        }
+    </script>
+</body>
+
+</html>

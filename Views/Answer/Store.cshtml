@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Store</title>
+</head>
+<body>
+    <div> 
+        @foreach(var question_id in ViewBag.obj)
+        {
+            @question_id @ViewBag.obj[question_id]
+                <br>
+        }
+       
+    </div>
+</body>
+</html>
