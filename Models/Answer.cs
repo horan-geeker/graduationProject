@@ -39,7 +39,7 @@ namespace MVC4.Models
             DataSet ds = DBConnect.getDataSet(strSql, par1);
             if (ds.Tables[0].Rows.Count == 0)
             {
-               throw new HttpException(404, "Not Found Answer");
+                return null;
             }
             List<Answer> ans = Util.DataSetToList<Answer>(ds);
             return ans;

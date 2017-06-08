@@ -22,9 +22,9 @@ namespace MVC4.Controllers
         {
             int user_id = 0;
             int questionnaire_id = Int32.Parse(request["questionnaire_id"]);
-            string username = Session["User"].ToString();
             if (request["questionnaire_type"] == "1")
             {
+                string username = Session["User"].ToString();
                 User user = UserContext.findByName(username);
                 user_id = user.id;
             }
@@ -60,12 +60,20 @@ namespace MVC4.Controllers
             foreach(Question question in questions)
             {
                 List<Answer> answers = AnswerContext.findByQuestion(question.id);
-                question.answers = answers;
-                foreach(Answer answer in answers)
+                if(answers == null)
                 {
-                    answer.user = UserContext.find(answer.user_id);
-                    
+
                 }
+                else
+                {
+                    question.answers = answers;
+                    foreach (Answer answer in answers)
+                    {
+                        answer.user = UserContext.find(answer.user_id);
+
+                    }
+                }
+                
             }
             
             ViewBag.que = que;
@@ -79,11 +87,18 @@ namespace MVC4.Controllers
             List<Answer> answers = AnswerContext.findByQuestion(Int32.Parse(request["id"]));
             foreach(QuestionChoice questionChoice in questionChoices)
             {
-                foreach (Answer answer in answers)
+                if(answers == null)
                 {
-                    if(answer.content == questionChoice.choice_tag)
+
+                }
+                else
+                {
+                    foreach (Answer answer in answers)
                     {
-                        questionChoice.count++;
+                        if(answer.content == questionChoice.choice_tag)
+                        {
+                            questionChoice.count++;
+                        }
                     }
                 }
             }  

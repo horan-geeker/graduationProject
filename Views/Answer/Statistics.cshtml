@@ -27,15 +27,31 @@
 
             @foreach (var question in ViewBag.que.questions)
             {
-                foreach (var answer in question.answers)
+                if (question.answers == null)
                 {
-                    <tr>
-                        <td>@answer.user.username</td>
-                        <td>@question.question_content</td>
-                        <td>
-                            @answer.content
-                        </td>
-                    </tr>
+
+                }
+                else
+                {
+                    foreach (var answer in question.answers)
+                    {
+                        if (answer.user == null)
+                        {
+
+                        }
+                        else
+                        {
+                        <tr>
+                            <td>@answer.user.username</td>
+                            <td>@question.question_content</td>
+                            <td>
+                                @answer.content
+                            </td>
+                        </tr>
+
+                        }
+                    }
+
                 }
 
             }

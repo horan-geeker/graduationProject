@@ -79,7 +79,7 @@ namespace MVC4.Models
             DataSet ds = DBConnect.getDataSet(strSql, par1);
             if (ds.Tables[0].Rows.Count == 0)
             {
-                throw new HttpException(404, "Not Found Meet");
+                return null;
             }
             User user = Util.DataSetToList<User>(ds)[0];
             return user;

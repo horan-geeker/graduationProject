@@ -77,6 +77,12 @@ namespace MVC4.Controllers
         public ActionResult Show(int id)
         {
             Questionnaire que = QueContext.find(id);
+
+            if (DateTime.Compare(Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd")), Convert.ToDateTime(que.end_at)) > 0)
+            {
+                return JavaScript("问卷已过期");
+            }
+
             que.questions = QueContext.questions(id);
 
             foreach(Question question in que.questions)

@@ -15,10 +15,11 @@
         // app config
         config: function() {
             $(function () {
+                //datatime组件
                 $('.datetimepicker').each(function () {
                     $(this).datetimepicker({ format: "YYYY-MM-DD HH:mm:00" });
                 })
-
+                //echarts
                 var chart = document.getElementById('meet_chart');
                 if (chart) {
                     var siginCount = chart.getAttribute('data-sigin');
@@ -108,6 +109,27 @@
                             })(chart)
                             
                         }
+                    }
+                }
+                //qrcode
+                var qrcode = document.getElementById("qrcode");
+                if (qrcode) {
+                    var qrcodeId = qrcode.getAttribute('data-id');
+                    //alert(window.location.host + "/Signin/ShowForm/" + qrcodeId);
+                    new QRCode(qrcode, "http://"+window.location.host + "/Signin/ShowForm/" + qrcodeId);
+                }
+                var qrcodes = document.getElementsByClassName("que-qrcode");
+                if (qrcodes.length > 0) {
+                    for (var i = 0; i < qrcodes.length; i++) {
+                        var url = qrcodes[i].getAttribute('data-url');
+                        new QRCode(qrcodes[i], {
+                            text: "http://" + window.location.host + url,
+                            width: 128,
+                            height: 128,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
                     }
                 }
             });
@@ -265,5 +287,3 @@
         }
     };
 })();
-
-app.init();

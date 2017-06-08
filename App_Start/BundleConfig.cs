@@ -26,6 +26,7 @@ namespace MVC4
                       "~/Scripts/moment.min.js",
                       "~/Scripts/bootstrap-datetimepicker.min.js",
                       "~/Scripts/echarts.common.min.js",
+                      "~/Scripts/qrcode.js",
                       "~/Scripts/app.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -17,6 +17,7 @@
                 <th>内容</th>
                 <th style="width:100px;">截至时间</th>
                 <th style="width:80px;">问卷类型</th>
+                <th>二维码</th>
                 <th style="width:200px;" class="text-center">操作</th>
             </tr>
         </thead>
@@ -28,7 +29,17 @@
                     <td>@que.title</td>
                     <td>@que.direction</td>
                     <td>@que.end_at</td>
-                    <td>@que.type</td>
+                    <td>
+                    @if (que.type == "1")
+                    {
+                        @:实名问卷
+                    }
+                     else
+                        { 
+                        @:匿名问卷
+                        }
+                    </td>
+                    <td><div class="que-qrcode" data-url="/Questionnaire/Show/@que.id"></div></td>
                     <td class="text-center">
                         <a class="btn btn-success btn-xs" href="/Questionnaire/Show/@que.id">
                             <i class="fa fa-book fa-fw"></i>
